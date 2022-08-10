@@ -3,4 +3,6 @@ export const refs = {
     inputEl: document.querySelector('input'),
     btnSubmitEl: document.querySelector('button'),
     galleryEl: document.querySelector('.gallery'),
+    btnLoadMoreEl: document.querySelector('.load-more'),
+    totalHitsEl: document.querySelector('.total-hits'),
 }

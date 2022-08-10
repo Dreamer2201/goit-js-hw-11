@@ -2,17 +2,18 @@ import {refs} from './refs';
 
 function createOneAnimal (animal) { 
     return `<div class="photo-card">
-    <img src="${animal.webformatURL}" alt="${animal.tags}" title="" loading="lazy" />
+    <a class="gallery__item" href="${animal.largeImageURL}">
+    <img src="${animal.webformatURL}" alt="${animal.tags}" title="Beautiful Image" loading="lazy" />
     <div class="info">
       <p class="info-item">
-        <b>Likes: ${animal.likes}</b></p>
+        <b>Likes: <br> ${animal.likes}</b></p>
       <p class="info-item">
-        <b>Views: ${animal.views}</b></p>
+        <b>Views: <br> ${animal.views}</b></p>
       <p class="info-item">
-        <b>Comments: ${animal.comments}</b></p>
+        <b>Comments: <br> ${animal.comments}</b></p>
       <p class="info-item">
-        <b>Downloads: ${animal.downloads}</b></p>
-    </div>
+        <b>Downloads: <br> ${animal.downloads}</b></p>
+    </div></a>
     </div>`
 }
 function createListAnimals (array) {
