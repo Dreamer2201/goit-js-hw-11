@@ -1,5 +1,4 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// import { axios } from "axios";
 // import SimpleLightbox from "simplelightbox";
 // import "simplelightbox/dist/simple-lightbox.min.css";
 
@@ -17,8 +16,10 @@ async function onSubmitForm (event) {
     const animal = refs.inputEl.value;
     checkEvent(event);
     try {
-        const data = await fetchPictures(animal);
-        refs.totalHitsEl.innerHTML = `Hooray! We found totalHits ${data.total} images.`
+        const fetchResult = await fetchPictures(animal);
+        const data = fetchResult.hits;
+        refs.totalHitsEl.innerHTML = `Hooray! We found totalHits ${data.total} images.`;
+        console.log(data);
         filterAnimals(data);
         hidenBtnLoadMore(data);
     } catch (error) {console.log(error)}
@@ -31,11 +32,11 @@ function checkEvent (event) {
     } currentPage +=1;
 }
 function filterAnimals(animals) {
-    if (animals.total === 0) {
+    if (animals.length === 0) {
         refs.btnLoadMoreEl.classList.add("hide");
         Notify.failure('Sorry, there are no images matching your search query. Please try again.');
     } else { 
-        insertCreatedAnimals(animals.hits);
+        insertCreatedAnimals(animals);
         refs.btnLoadMoreEl.classList.remove("hide");
     }
 }
