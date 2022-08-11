@@ -3,7 +3,8 @@ import {refs} from './refs';
 function createOneAnimal (animal) { 
     return `<div class="photo-card">
     <a class="gallery__item" href="${animal.largeImageURL}">
-    <img src="${animal.webformatURL}" alt="${animal.tags}" title="Beautiful Image" loading="lazy" />
+    <div class="img-thumb">
+    <img src="${animal.webformatURL}" alt="${animal.tags}" title="Beautiful Image" loading="lazy"/></img></div>
     <div class="info">
       <p class="info-item">
         <b>Likes: <br> ${animal.likes}</b></p>
