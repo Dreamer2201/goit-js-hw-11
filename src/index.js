@@ -57,5 +57,15 @@ function smoothScrollToBottomPage () {
         behavior: "smooth",
     })
 }
+function onScrollNextPage () {
+    const documentRect = document.documentElement.getBoundingClientRect();
+    if (documentRect.bottom <= document.documentElement.clientHeight + 50) {
+        currentPage +=1;
+        console.log(currentPage);
+        const animal = refs.inputEl.value;
+        loadFetchResult(animal);     
+    }
+    }
+
 
 // const lightbox = new SimpleLightbox('.gallery__item', { captionSelector: 'img', nav: true, captions: true, captionType: 'alt', captionsData: 'alt', overlayOpacity: 0.5, navText: 	['←','→'], captionPosition: 'bottom', captionDelay: 250 });
