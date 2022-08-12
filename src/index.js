@@ -1,6 +1,7 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// import SimpleLightbox from "simplelightbox";
-// import "simplelightbox/dist/simple-lightbox.min.css";
+import SimpleLightbox from "simplelightbox/dist/simple-lightbox.esm";
+// Додатковий імпорт стилів
+import "simplelightbox/dist/simple-lightbox.min.css";
 
 import {refs} from './js/refs';
 import {fetchPictures} from './js/fetchPictures';
@@ -66,5 +67,5 @@ function onScrollNextPage () {
     }
     }
 
+    new SimpleLightbox('.img-link', { captions: true, captionSelector: 'img', captionsData: 'alt', captionPosition: 'bottom', captionDelay: 250 });
 
-// const lightbox = new SimpleLightbox('.gallery__item', { captionSelector: 'img', nav: true, captions: true, captionType: 'alt', captionsData: 'alt', overlayOpacity: 0.5, navText: 	['←','→'], captionPosition: 'bottom', captionDelay: 250 });

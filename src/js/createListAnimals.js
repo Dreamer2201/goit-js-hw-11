@@ -1,21 +1,21 @@
 import {refs} from './refs';
 
-function createOneAnimal (animal) { 
-    return `<div class="photo-card">
-    <a class="gallery__item" href="${animal.largeImageURL}">
+function createOneAnimal (picture) { 
+    return `<a class="img-link" href="${picture.largeImageURL} ">
+    <div class="photo-card">
     <div class="img-thumb">
-    <img src="${animal.webformatURL}" alt="${animal.tags}" title="Beautiful Image" loading="lazy"/></img></div>
+    <img src="${picture.webformatURL}" alt="${picture.tags}" title="${picture.tags}" loading="lazy"/></div>
     <div class="info">
       <p class="info-item">
-        <b>Likes: <br> ${animal.likes}</b></p>
+        <b>Likes: <br> ${picture.likes}</b></p>
       <p class="info-item">
-        <b>Views: <br> ${animal.views}</b></p>
+        <b>Views: <br> ${picture.views}</b></p>
       <p class="info-item">
-        <b>Comments: <br> ${animal.comments}</b></p>
+        <b>Comments: <br> ${picture.comments}</b></p>
       <p class="info-item">
-        <b>Downloads: <br> ${animal.downloads}</b></p>
-    </div></a>
-    </div>`
+        <b>Downloads: <br> ${picture.downloads}</b></p>
+    </div>
+    </div></a>`
 }
 function createListAnimals (array) {
     return array.reduce((acc, animal) => acc + createOneAnimal(animal), "");
