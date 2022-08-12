@@ -1,10 +1,11 @@
 import {refs} from './refs';
 
 function createOneAnimal (picture) { 
-    return `<a class="img-link" href="${picture.largeImageURL} ">
+    return `
     <div class="photo-card">
     <div class="img-thumb">
-    <img src="${picture.webformatURL}" alt="${picture.tags}" title="${picture.tags}" loading="lazy"/></div>
+    <a class="img-link" href="${picture.largeImageURL}">
+    <img src="${picture.webformatURL}" alt="${picture.tags}" title="${picture.tags}" loading="lazy"/></a></div>
     <div class="info">
       <p class="info-item">
         <b>Likes: <br> ${picture.likes}</b></p>
@@ -15,7 +16,7 @@ function createOneAnimal (picture) {
       <p class="info-item">
         <b>Downloads: <br> ${picture.downloads}</b></p>
     </div>
-    </div></a>`
+    </div>`
 }
 function createListAnimals (array) {
     return array.reduce((acc, animal) => acc + createOneAnimal(animal), "");
