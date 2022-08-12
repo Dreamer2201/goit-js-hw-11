@@ -27,8 +27,8 @@ async function convertFetchResults (animalName) {
         const data = fetchResult.hits;
         console.log(fetchResult);
         console.log(data);
-        // refs.totalHitsEl.innerHTML = `Hooray! We found ${data.length} images.`;
-        // filterAnimals(data);
+        refs.totalHitsEl.innerHTML = `Hooray! We found ${fetchResult.total} images.`;
+        filterAnimals(data);
     } catch (error) {console.log(error)}
 }
 function checkEvent (event) {
@@ -40,8 +40,7 @@ function checkEvent (event) {
 function filterAnimals(data) {
     if (data.length < 40) {
         console.log(data.length);
-        hidenBtnLoadMore(data);
-        Notify.failure('Sorry, there are no images matching your search query. Please try again.');
+        refs.btnLoadMoreEl.classList.add("hide");
         return;
     } else { 
         console.log(data.length);
