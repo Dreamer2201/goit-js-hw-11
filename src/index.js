@@ -8,12 +8,12 @@ import {smoothScrollToBottomPage} from './js/smoothScroll';
 
 const BASE_URL = 'https://pixabay.com/api/';
 const myAPIkey = '29146874-e25e04f0bbd5e8c4fffc4a4f6';
-export const perPages = 40;
+const perPages = 40;
 let currentPage = 1;
 
 refs.btnLoadMoreEl.classList.add("hide");
 
-export const lightbox = new SimpleLightbox('.gallery a', { captions: true, captionSelector: 'img', captionsData: 'alt', captionPosition: 'bottom', captionDelay: 250 });
+const lightbox = new SimpleLightbox('.gallery a', { captions: true, captionSelector: 'img', captionsData: 'alt', captionPosition: 'bottom', captionDelay: 250 });
 
 refs.formEl.addEventListener('submit', onSubmitForm);
 refs.btnLoadMoreEl.addEventListener('click', onSubmitForm);
@@ -51,7 +51,8 @@ function filterAnimals(data) {
         lightbox.refresh();
         return;
     } else if (data.length === 0) {
-        Notify.failure("Sorry, there are no images matching your search query. Please try again.");
+        refs.btnLoadMoreEl.classList.add("hide");
+        Notify.failure("Sorry, there are no images matching your search query. Please try again.");   
         return;
     } else { 
         insertCreatedAnimals(data);  
