@@ -1,10 +1,13 @@
+import axios from 'axios';
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 import {refs} from './js/refs';
-import {fetchPictures} from './js/fetchPictures';
 import {filterAnimals} from './js/filterPictures';
-import {clearSearchResults} from './js/clearGalleryList';
+import {clearGalleryList} from './js/clearGalleryList';
 
+const BASE_URL = 'https://pixabay.com/api/';
+const myAPIkey = '29146874-e25e04f0bbd5e8c4fffc4a4f6';
+export const perPages = 40;
 export let currentPage = 1;
 
 refs.btnLoadMoreEl.classList.add("hide");
@@ -22,9 +25,13 @@ function onSubmitForm (event) {
 }
 function checkEvent (event) {
     if (event.type === 'submit') {
-        clearSearchResults();
+        clearGalleryList();
         return currentPage = 1;  
     } currentPage +=1;  
+}
+const fetchPictures = async(animal) => {
+    const response = await axios.get(`${BASE_URL}?key=${myAPIkey}&q=${animal}&image_type=photo&orientation=horizontal&safesearch=true&per_page=${perPages}&page=${currentPage}`);
+    return response.data; 
 }
 async function convertFetchResults (animalName) {
     try {
@@ -34,3 +41,4 @@ async function convertFetchResults (animalName) {
         filterAnimals(data);
     } catch (error) {console.log(error)}
 }
+

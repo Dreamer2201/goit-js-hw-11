@@ -1,5 +1,5 @@
 import { refs } from "./refs";
 
-export function clearSearchResults () {
+export function clearGalleryList () {
     refs.galleryEl.innerHTML = "";
 }
