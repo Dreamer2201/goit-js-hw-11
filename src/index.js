@@ -23,7 +23,6 @@ function onSubmitForm (event) {
 }
 function onClickBtnLodeMore (event) {
     currentPage += 1;
-    console.log(currentPage); 
     const animal = refs.inputEl.value;
     convertFetchResults(animal); 
 }
