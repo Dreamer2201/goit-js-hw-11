@@ -21,7 +21,7 @@ function createOneAnimal (picture) {
 function createListAnimals (array) {
     return array.reduce((acc, animal) => acc + createOneAnimal(animal), "");
 }
-export function insertCreatedAnimals (array) {
+export default function insertCreatedAnimals (array) {
     const result = createListAnimals(array);
     refs.galleryEl.insertAdjacentHTML('beforeend', result);
 }
