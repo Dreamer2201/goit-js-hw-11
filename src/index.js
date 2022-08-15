@@ -1,7 +1,7 @@
 import {Notify} from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
-import {fetchPictures} from './js/fetchPictures';
+import fetchPictures from './js/fetchPictures';
 import refs from './js/refs';
 import insertCreatedAnimals from './js/createListAnimals';
 import smoothScrollToBottomPage from './js/smoothScrollToButtomPage';
