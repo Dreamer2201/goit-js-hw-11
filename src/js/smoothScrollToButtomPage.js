@@ -1,4 +1,3 @@
-import { refs } from "./refs";
 
 export default function smoothScrollToBottomPage () {
     const galleryRect = refs.galleryEl.getBoundingClientRect();

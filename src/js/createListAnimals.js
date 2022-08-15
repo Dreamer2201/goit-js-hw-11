@@ -1,4 +1,3 @@
-import {refs} from './refs';
 
 function createOneAnimal (picture) { 
     return `

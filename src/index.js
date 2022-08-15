@@ -1,14 +1,13 @@
 import {Notify} from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
-import {refs} from './js/refs';
+import {fetchPictures} from './js/fetchPictures';
+import refs from './js/refs';
 import insertCreatedAnimals from './js/createListAnimals';
-import smoothScrollToBottomPage from './js/smoothScroll';
-import {currentPage, fetchPictures} from './js/fetchPictures';
+import smoothScrollToBottomPage from './js/smoothScrollToButtomPage';
 
-refs.btnLoadMoreEl.classList.add("hide");
 export let currentPage = 1;
-
+refs.btnLoadMoreEl.classList.add("hide");
 const lightbox = new SimpleLightbox('.gallery a', { captions: true, captionSelector: 'img', captionsData: 'alt', captionPosition: 'bottom', captionDelay: 250 });
 
 refs.formEl.addEventListener('submit', onSubmitForm);
@@ -19,10 +18,11 @@ function onSubmitForm (event) {
     refs.btnLoadMoreEl.classList.add("hide");
     const animal = refs.inputEl.value;
     clearGalleryList();
+    currentPage = 1;
     convertFetchResults(animal); 
 }
 function onClickBtnLodeMore (event) {
-    currentPage +=1;
+    currentPage += 1;
     console.log(currentPage); 
     const animal = refs.inputEl.value;
     convertFetchResults(animal); 
