@@ -6,7 +6,7 @@ import refs from './js/refs';
 import insertCreatedAnimals from './js/createListAnimals';
 import smoothScrollToBottomPage from './js/smoothScrollToButtomPage';
 
-export let currentPage = 1;
+let currentPage = 1;
 refs.btnLoadMoreEl.classList.add("hide");
 const lightbox = new SimpleLightbox('.gallery a', { captions: true, captionSelector: 'img', captionsData: 'alt', captionPosition: 'bottom', captionDelay: 250 });
 
@@ -16,38 +16,39 @@ refs.btnLoadMoreEl.addEventListener('click', onClickBtnLodeMore);
 function onSubmitForm (event) {
     event.preventDefault();
     refs.btnLoadMoreEl.classList.add("hide");
-    const animal = refs.inputEl.value;
+    const searchName = event.currentTarget.elements.searchQuery.value.trim().toUpperCase();
     clearGalleryList();
     currentPage = 1;
-    convertFetchResults(animal); 
+    convertFetchResults(searchName, currentPage); 
 }
-function onClickBtnLodeMore (event) {
+function onClickBtnLodeMore () {
     currentPage += 1;
-    const animal = refs.inputEl.value;
-    convertFetchResults(animal); 
+    const searchName = refs.inputEl.value.trim().toUpperCase();
+    convertFetchResults(searchName, currentPage); 
 }
-async function convertFetchResults (animalName) {
+async function convertFetchResults (searchQuery, currentPage) {
     try {
-        const fetchResult = await fetchPictures(animalName);   
-        const data = fetchResult.hits;
-        refs.totalHitsEl.innerHTML = `Hooray! We found ${fetchResult.total} images.`;
-        filterAnimals(data);
+        const fetchResult = await fetchPictures(searchQuery, currentPage);  
+        if (currentPage === 1) {
+            Notify.info(`Hooray! We found ${fetchResult.totalHits} images.`);
+        }
+        filterFetchResult(fetchResult);
     } catch (error) {console.log(error)}
 }
-function filterAnimals(data) {
-    if (data.length > 0 && data.length < 40) {
-        insertCreatedAnimals(data);  
+function filterFetchResult(fetchResult) {
+    if (currentPage === Math.ceil(fetchResult.totalHits / 40)) {
+        insertCreatedAnimals(fetchResult.hits);  
         refs.btnLoadMoreEl.classList.add("hide");
         Notify.info("We're sorry, but you've reached the end of search results.");
         smoothScrollToBottomPage();
         lightbox.refresh();
         return;
-    } else if (data.length === 0) {
+    } else if (fetchResult.total === 0) {
         refs.btnLoadMoreEl.classList.add("hide");
         Notify.failure("Sorry, there are no images matching your search query. Please try again.");   
         return;
     } else { 
-        insertCreatedAnimals(data);  
+        insertCreatedAnimals(fetchResult.hits);  
         refs.btnLoadMoreEl.classList.remove("hide");
         smoothScrollToBottomPage();
         lightbox.refresh();

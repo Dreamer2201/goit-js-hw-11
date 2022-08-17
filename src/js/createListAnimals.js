@@ -18,7 +18,7 @@ function createOneAnimal (picture) {
     </div>`
 }
 function createListAnimals (array) {
-    return array.reduce((acc, animal) => acc + createOneAnimal(animal), "");
+    return array.reduce((acc, item) => acc + createOneAnimal(item), "");
 }
 export default function insertCreatedAnimals (array) {
     const result = createListAnimals(array);
