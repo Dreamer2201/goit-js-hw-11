@@ -1,5 +1,6 @@
+import {refs} from './refs';
 
-function createOneAnimal (picture) { 
+ function createOneAnimal (picture) { 
     return `
     <div class="photo-card">
     <div class="img-thumb">
