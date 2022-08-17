@@ -7,7 +7,7 @@ import insertCreatedAnimals from './js/createListAnimals';
 import smoothScrollToBottomPage from './js/smoothScrollToButtomPage';
 
 let currentPage = 1;
-refs.btnLoadMoreEl.classList.add("hide");
+refs.btnLoadMoreEl.classList.add('hide');
 const lightbox = new SimpleLightbox('.gallery a', { captions: true, captionSelector: 'img', captionsData: 'alt', captionPosition: 'bottom', captionDelay: 250 });
 
 refs.formEl.addEventListener('submit', onSubmitForm);
@@ -15,7 +15,7 @@ refs.btnLoadMoreEl.addEventListener('click', onClickBtnLodeMore);
 
 function onSubmitForm (event) {
     event.preventDefault();
-    refs.btnLoadMoreEl.classList.add("hide");
+    refs.btnLoadMoreEl.classList.add('hide');
     const searchName = event.currentTarget.elements.searchQuery.value.trim().toUpperCase();
     clearGalleryList();
     currentPage = 1;
@@ -38,18 +38,18 @@ async function convertFetchResults (searchQuery, currentPage) {
 function filterFetchResult(fetchResult) {
     if (currentPage === Math.ceil(fetchResult.totalHits / 40)) {
         insertCreatedAnimals(fetchResult.hits);  
-        refs.btnLoadMoreEl.classList.add("hide");
+        refs.btnLoadMoreEl.classList.add('hide');
         Notify.info("We're sorry, but you've reached the end of search results.");
         smoothScrollToBottomPage();
         lightbox.refresh();
         return;
     } else if (fetchResult.total === 0) {
-        refs.btnLoadMoreEl.classList.add("hide");
+        refs.btnLoadMoreEl.classList.add('hide');
         Notify.failure("Sorry, there are no images matching your search query. Please try again.");   
         return;
     } else { 
         insertCreatedAnimals(fetchResult.hits);  
-        refs.btnLoadMoreEl.classList.remove("hide");
+        refs.btnLoadMoreEl.classList.remove('hide');
         smoothScrollToBottomPage();
         lightbox.refresh();
         return;
